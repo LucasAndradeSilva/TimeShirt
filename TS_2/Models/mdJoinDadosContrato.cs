@@ -14,6 +14,10 @@ namespace TS_2.Models
 
         public int IdServico1;
         public string StatusServico1;
+
+        public string EmailFunc;
+
+        public int IdEmpresa;
         
     }
 }

@@ -144,6 +144,11 @@ namespace TS_2.Controllers
         public IActionResult DetalhesEmpresa(IFormCollection frm)
         {
             mdJoinDadosContrato dadosContrato = new mdJoinDadosContrato();
+            dadosContrato.DataContrato1 = frm["txtData"];
+            dadosContrato.Descricao1 = frm["txtDesc"];
+            dadosContrato.Numero1 = frm["txtNumContrato"];
+            dadosContrato.EmailFunc = frm["txtEmail"];
+            dadosContrato.IdEmpresa = Convert.ToInt32(frm["txtId"]);
             return View();
         }
 
