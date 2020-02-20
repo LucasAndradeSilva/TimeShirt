@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TS_2.Models.mdEmpresa>
+
+@{
+    ViewData["Title"] = "ListEmpresas";
+    Layout = "~/Views/Shared/_LayoutAdministracao.cshtml";
+}
+
+<link href="~/css/ViewAdm/StylelListEmpresa.css" rel="stylesheet" />
+
+<h1>Empresas cadastradas</h1>
+
+<form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-lg-2 w-25" type="search" placeholder="Ex. Cleber Importações" aria-label="Buscar">
+    <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                EMPRESA
+            </th>
+            <th>
+                CNPJ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+         {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeEmpresa1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CNPJ1)
+                </td>
+                <td>
+                    <a class="text-white btn btn-primary btn" href="/Adiministracao/DetalhesEmpresa?idEmp=@item.IdEmpresa1&amp;nome=@item.NomeEmpresa1">DETALHES</a>
+                    <a class="text-white btn btn-danger" href="#@item.IdEmpresa1">DELETAR</a>
+
+                    <div class="lbox" id="@item.IdEmpresa1">
+                        <div class="header">
+                            <a id="title" class="text-justify">DELETAR?</a>
+                            <a href="" class="btn btn-dark text-white" id="btnClose">X</a>
+                        </div>
+                        <div class="lconteBox">
+                            <p>
+                                TODOS OS DADOS DESSA EMPRESA SERÃO APAGADOS.
+                                TEM CERTEZA QUE DESEJA DELETAR?
+                            </p>
+                            <a href="/Adiministracao/DeletarEmpresa?IdEmp=@item.IdEmpresa1" class="btn btn-success btn-wd">SIM</a>
+                            <a href="" class="btn btn-danger btn-wd">NÃO</a>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>        
+         }
+    </tbody>
+</table>
+
+
+
+

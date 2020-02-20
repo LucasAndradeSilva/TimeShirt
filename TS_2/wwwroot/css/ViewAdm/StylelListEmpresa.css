@@ -1,0 +1,52 @@
+﻿
+#btnClose{
+ position:absolute;
+ font-family: 'Arial';
+ right: 5%;
+ text-align:center;
+ bottom: 75%;
+}
+
+#title {
+    position: absolute;
+    font-family: 'Arial';
+    font-weight: bold;
+    font-size: medium;
+    right: 40%;
+    bottom: 78%;
+    text-align: center;
+}
+
+.lbox {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.lbox:target {
+    opacity:1;
+    visibility:visible;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 100px 40px;
+    max-width: 400px;
+    width: 50%;
+}
+
+.lconteBox{
+    position: absolute;
+    top: 30%;
+    left: 7%;
+}
+
+.lconteBox a.btn
+{
+   position: relative;
+   display: compact;
+   left: 7%;   
+}

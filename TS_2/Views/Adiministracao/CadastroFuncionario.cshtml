@@ -1,0 +1,117 @@
+﻿@model TS_2.Models.Join.mdJoinCadFuncionario
+
+@{
+    ViewData["Title"] = "CadastroFuncionario";
+    Layout = "~/Views/Shared/_LayoutAdministracao.cshtml";
+}
+
+<h1>Cadastro Funcionario</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CadastroFuncionario" class="col-form-label-lg">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Usuario1" class="control-label"></label>
+                <input asp-for="Usuario1" class="form-control" value="teste@teste.com" />
+                <span asp-validation-for="Usuario1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Senha1" class="control-label"></label>
+                <input asp-for="Senha1" class="form-control" value="5122">
+                <span asp-validation-for="Senha1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeFunc1" class="control-label"></label>
+                <input asp-for="NomeFunc1" class="form-control" value="Cleber Almeida Silva" />
+                <span asp-validation-for="NomeFunc1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RT1" class="control-label"></label>
+                <input asp-for="RT1" class="form-control" value="9871" />
+                <span asp-validation-for="RT1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CPF1" class="control-label"></label>
+                <input asp-for="CPF1" class="form-control" data-mask="000.000.000-00" value="512.123.526-22" />
+                <span asp-validation-for="CPF1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RG1" class="control-label"></label>
+                <input asp-for="RG1" class="form-control" data-mask="00.000.000-0" value="50.889.134-2" />
+                <span asp-validation-for="RG1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TEL1" class="control-label"></label>
+                <input asp-for="TEL1" class="form-control" data-mask="(00)00000-0000" value="(11) 94275-1134" />
+                <span asp-validation-for="TEL1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email1" class="control-label"></label>
+                <input asp-for="Email1" class="form-control" value="teste@teste.com" />
+                <span asp-validation-for="Email1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cep1" class="control-label"></label>
+                <input asp-for="Cep1" class="form-control" data-mask="00000-000" value="06132-370" />
+                <span asp-validation-for="Cep1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rua1" class="control-label"></label>
+                <input asp-for="Rua1" class="form-control" value="Arnaldo Coelho" />
+                <span asp-validation-for="Rua1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numero1" class="control-label"></label>
+                <input asp-for="Numero1" class="form-control" value="123" />
+                <span asp-validation-for="Numero1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bairro1" class="control-label"></label>
+                <input asp-for="Bairro1" class="form-control" value="Vila Madalena" />
+                <span asp-validation-for="Bairro1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logradouro1" class="control-label"></label>
+                <input asp-for="Logradouro1" class="form-control" value="AV" />
+                <span asp-validation-for="Logradouro1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="Estado1" class="control-label"></label>
+                <select asp-for="Estado1">
+                    <option value="SP">SP</option>
+                </select>
+                @*<! -- <input asp-for="Estado1" class="form-control" /> -->*@
+                <span asp-validation-for="Estado1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pais1" class="control-label"></label>
+                <input asp-for="Pais1" class="form-control" value="BRASIL" />
+                <span asp-validation-for="Pais1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="btnCad" class="btn btn-success form-control" asp-action="CadastroFuncionario" asp-controller="Adiministracao"><i class="fa fa-spinner fa-spin" id="Loading"></i><a id="txtButton"></a></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- =================== -->
+<!-- === JAVA SCRIPT === -->
+<!-- =================== -->
+<script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Loading').css('display', 'none');
+        $('#txtButton').text(' Cadastro');
+
+        $('#btnCad').on('click', function () {
+            $('#Loading').css('display', 'inline-block');
+            $('#txtButton').text(' Loading');
+        });
+    });
+
+
+</script>

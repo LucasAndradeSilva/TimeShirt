@@ -1,0 +1,27 @@
+﻿/*IMAGEM DE FUNDO*/
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../../Images/Login/bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#frmLogin {
+    background-color: rgba(255, 255, 255, 0.90);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 30px 20px;
+    max-width: 400px;
+    width: 50%;
+}
+
+#gpEmail {
+    margin-top: 10px;
+}

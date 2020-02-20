@@ -1,0 +1,76 @@
+﻿@model TS_2.Models.mdLogin
+@{
+    ViewData["Title"] = "Login";
+}
+
+<link rel="stylesheet" href="~/css/ViewLogin/ViewLogin.css" />
+<form asp-action="Logar" asp-controller="HomeController" class="form-group" id="frmLogin">
+    <img src="~/Images/Login/aprot.png" class="rounded mx-auto d-block" width="154" height="124" id="imgLogo" />
+    <div class="form-group" id="gpEmail">
+        <label for="inputEmail3" class="col-sm-2">Email</label>
+        <div class="col-lg-12">
+            <input asp-for="Usuario1" type="email" class="form-control" id="inputEmail3" placeholder="Email" value="Lucas@gmail.com"/>            
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2">Senha</label>
+        <div class="col-lg-12">
+            <input asp-for="Senha1" type="password" class="form-control" id="inputPassword3" placeholder="Password" value="1234"/>            
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" /> Me lembre                     
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-12">
+            <button type="submit" class="btn btn-primary btn-block" id="btnLogin">Login</button>
+        </div>
+    </div>
+</form>
+
+<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alerta">
+    <strong class="text-center" >@ViewBag.MessageError</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<script>
+    (function ()
+    {
+        if (@ErrorViewModel.logHelper == -2) {
+            document.getElementById('alerta').style.display = 'none'; 
+        }
+        else if (@ErrorViewModel.logHelper == -1) {
+            document.getElementById('alerta').style.display = 'block'; 
+            $('.alert').alert('close')
+        }        
+    })();
+
+
+
+    @*$(document).ready(function () {
+        var id = @PromitiWebCore.Models.Cliente_PF.cliente_PF.Id_PF;
+        if ( id > 0) {
+            $('#txtNmUsu').removeAttr('style');
+            $('#txtLogin').css('display','none');
+            $('#txtCadastro').css('display', 'none');
+            $('#btnCriar').removeAttr('style');
+            document.querySelector('.table').style.display = 'block';
+            document.getElementById('txtNovoP').style.display = 'block';
+        }
+        else {
+            document.querySelector('.table').style.display = 'none';
+            document.getElementById('txtNovoP').style.display = 'none';
+        }
+    });*@
+
+</script>
+
