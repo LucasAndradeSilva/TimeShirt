@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TS_2.Data;
 using TS_2.Models;
@@ -38,14 +39,12 @@ namespace TS_2.Controllers
                     string TipoLog = mdDataUser.logadoTipo.Cargo1;
                     if (TipoLog == "Adm")
                     {
-                        //AdiministracaoController.Name = mdDataUser.logadoFuncionario.NomeFunc1;
-                        //AdiministracaoController.IdFunc = mdDataUser.logadoFuncionario.IdFunc1;
+                        HttpContext.Session.Set(mdDataUser);//Loga os dados do Usuario nos Cookis
                         return RedirectToAction("HomeAdm", "Adiministracao");
                     }
                     else if (TipoLog == "Func")
-                    {                       
-                        //FuncionarioController.Name = mdDataUser.logadoFuncionario.NomeFunc1;
-                        //FuncionarioController.IdFunc = mdDataUser.logadoFuncionario.IdFunc1;
+                    {
+                        HttpContext.Session.Set(mdDataUser);
                         return RedirectToAction("Home", "Funcionario");
                     }
                     else if (TipoLog == "Geral")

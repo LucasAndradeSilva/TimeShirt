@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using TS_2.Models;
@@ -10,7 +11,8 @@ namespace TS_2.Data
 {
     public static class dtDataBase
     {
-        private static MySqlConnection connection = new MySqlConnection("server=localhost;uid=root;pwd=1234567;database=dbts");   
+        private static MySqlConnection connection = new MySqlConnection("server=localhost;uid=root;pwd=1234567;database=dbts");//Casa   
+        //private static SqlConnection connection; 
 
         //=======================
         //=== OPEN CONNECTION ===
