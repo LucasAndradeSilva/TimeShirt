@@ -6,11 +6,13 @@
     int IdEmpresa = Html.ViewBag.IdEmp;
 }
 
-<h1>Detalhes da Empresa</h1>
 
-<div>
+
+
+<div class="jumbotron" style="box-shadow: 0px 0px 10px 0px #000000; background-color: white;">
+    <h1 class="text-center text-uppercase" >Detalhes da Empresa</h1>
     <hr />
-    <dl class="row">
+    <dl class="row" >
         <dt class="col-sm-2">
             EMPRESA
         </dt>
@@ -30,11 +32,11 @@
             @Html.ViewBag.DadosEndereco
         </dd>
     </dl>
-
-    <h3>Contratos</h3>
-    <table class="table">
+    
+    <h3 class="text-center text-uppercase my-lg-4">Contratos</h3>
+    <table class="table table-bordered">
         <thead>
-            <tr>
+            <tr class="jumbotron">
                 <th>
                     NÚMERO
                 </th>
@@ -46,8 +48,7 @@
                 </th>
                 <th>
                     STATUS
-                </th>
-                <th></th>
+                </th>                
             </tr>
         </thead>
         <tbody>

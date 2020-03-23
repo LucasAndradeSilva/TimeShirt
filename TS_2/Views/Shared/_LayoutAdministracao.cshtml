@@ -13,34 +13,35 @@
         body {
             margin-right: 0px;
             margin-top: 0px;
-            background: linear-gradient(300deg, red, red 60%, #f1f1f1 60%, #f1f1f1);
+            background: linear-gradient(200deg, #0094ff, #0094ff 59%, #ffffff 60%, #ffffff);
+            background-repeat: no-repeat;   
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-transparent font-weight-bold">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-transparent font-weight-bold">
         <div class="logo">
             <a href="javascript:;" class="simple-text">
-                <img src="~/Images/Login/aprot.png" class="rounded mx-auto d-block" width="80" height="60" id="imgLogo" />
+                <img src="~/Images/Login/aprot.png" class="rounded mx-auto d-block" width="90" height="100" id="imgLogo" />
             </a>
         </div>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" asp-action="HomeAdm" asp-controller="Adiministracao">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" asp-action="HomeAdm" asp-controller="Adiministracao">HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Relatório</a>
+                    <a class="nav-link" href="#">RELATÓRIO</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CADASTRO</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" asp-action="CadastroEmpresa" asp-controller="Adiministracao">EMPRESA</a>
                         <a class="dropdown-item" asp-action="CadastroFuncionario" asp-controller="Adiministracao">FUNCIONARIO</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lista</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">LISTA</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" asp-action="ListEmpresas" asp-controller="Adiministracao">EMPRESA</a>
                         <a class="dropdown-item" href="#">FUNCIONARIO</a>
