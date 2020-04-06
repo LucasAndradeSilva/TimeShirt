@@ -13,14 +13,14 @@ namespace TS_2.Controllers
     public class FuncionarioController : Controller
     {
 
-        //=========================
-        //=== EXECUTA A INICIAL ===
-        //=========================
+        //================================
+        //=== EXECUTA A PAGINA INICIAL ===
+        //===============================
         public IActionResult Home()
         {
             return View();
         }
-
+        
         //==============================
         //=== EXECUTA A VIEW SERVIÇO ===
         //==============================
@@ -36,6 +36,14 @@ namespace TS_2.Controllers
                 ErrorViewModel.logHelper = -1;
                 return RedirectToAction("Home", "Home");
             }            
+        }
+
+        //=========================
+        //=== EXECUTA A INICIAL ===
+        //=========================
+        public IActionResult Registro_de_Horas()
+        {
+            return View();
         }
 
         //=======================================

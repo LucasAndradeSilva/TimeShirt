@@ -205,21 +205,7 @@ namespace TS_2.Data
 
                 if (Colletion.NumeroContrato1 != 0)
                 {
-                    MySqlCommand cmd1 = new MySqlCommand("call sp_SetServicosFunc(@SetEmailFunc, @SetIDEmp, @SetNumContrato, @SetDescricao,  @SetDataContrato)", connection);
-                    //Contrato
-                    cmd1.Parameters.AddWithValue("@SetNumContrato", Colletion.NumeroContrato1);
-                    cmd1.Parameters.AddWithValue("@SetDescricao", Colletion.Descricao1);
-                    cmd1.Parameters.AddWithValue("@SetDataContrato", Colletion.DataContrato1);
-
-                    //Funcionario
-                    cmd1.Parameters.AddWithValue("@SetEmailFunc", Colletion.EmailFunc1);
-
-                    //Empressa
-                    MySqlCommand cmd2 = new MySqlCommand("select max(IdEmpresa) from tbempresa", connection);
-                    int IdEmp = Convert.ToInt32(cmd2.ExecuteScalar());
-                    cmd1.Parameters.AddWithValue("@SetIDEmp", IdEmp);
-
-                    cmd1.ExecuteNonQuery();                    
+                               
                 }
                 
                 CloseConnection();
@@ -232,6 +218,36 @@ namespace TS_2.Data
             }
         }
 
+        //===================
+        //=== SET SERVIÇO ===
+        //===================
+        public static bool SetServico(mdJoinDadosContrato Contrato)
+        {
+            connection.Open();
+            MySqlCommand cmd1 = new MySqlCommand("call sp_SetServicosFunc(@SetEmailFunc, @SetIDEmp, @SetNumContrato, @SetDescricao,  @SetDataContrato)", connection);
+            try
+            {                
+                cmd1.Parameters.AddWithValue("@SetNumContrato", Contrato.Numero1);
+                cmd1.Parameters.AddWithValue("@SetDescricao", Contrato.Descricao1);
+                cmd1.Parameters.AddWithValue("@SetDataContrato", Contrato.DataContrato1);
+                cmd1.Parameters.AddWithValue("@SetEmailFunc", Contrato.EmailFunc);
+                cmd1.Parameters.AddWithValue("@SetIDEmp", Contrato.IdEmpresa);
+
+                cmd1.ExecuteNonQuery();
+                connection.Clone();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                cmd1.Dispose();
+                connection.Close();
+                connection.Dispose();
+            }
+        }
 
         //========================
         //=== GET ALL SERVIÇOS ===

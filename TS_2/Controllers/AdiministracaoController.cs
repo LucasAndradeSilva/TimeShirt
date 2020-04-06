@@ -220,7 +220,8 @@ namespace TS_2.Controllers
             dadosContrato.Numero1 = frm["txtNumContrato"];
             dadosContrato.EmailFunc = frm["txtEmail"];
             dadosContrato.IdEmpresa = Convert.ToInt32(frm["txtId"]);
-            return View();
+            dtDataBase.SetServico(dadosContrato);
+            return View(dtDataBase.GetAllDataEmpListContrato(dadosContrato.IdEmpresa));
         }
 
 

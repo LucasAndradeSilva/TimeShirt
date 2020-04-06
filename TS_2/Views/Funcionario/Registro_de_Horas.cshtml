@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Registro_de_Horas";
+    Layout = "_LayoutLogadoFunc";    
+}
+
+
+<div class="jumbotron" style="box-shadow: 0px 0px 10px 0px #000000; background-color: white;">
+    <h1 class="text-uppercase text-center">Registrar Horas Trabalhadas</h1>
+    <hr />
+
+    <div>
+        <label>Selecione uma Empresa</label>
+        <select class="text-uppercase">
+            <option selected>Selecione uma Opção</option>
+            @*@foreach (var item in collection)
+                {
+
+                }*@
+        </select>
+    </div>
+
+    <div>
+        <label>Selecione um Serviço</label>
+        <select class="text-uppercase">
+            <option selected>Selecione uma Opção</option>
+            @*@foreach (var item in collection)
+                {
+
+                }*@
+        </select>
+    </div>
+
+    <div class="jumbotron m-5  text-center">
+        <h4 class="text-uppercase ">Detalhes do Serviço</h4>
+        <br />
+        
+        <div>
+            <label>Status</label>
+        </div>
+        <div>
+            <label>Ultimo Registro</label>
+        </div>
+        <div>
+            <label>Total de Horas</label>
+        </div>
+                        
+        <button class="btn btn-success w-50"  >INICIAR SERVIÇO</button>
+        @*GUARDAR N SESSION E NO BANCO QUE TEM UM SERVIÇO EM ABERTO*@
+        @*Quando clicar em iniciar trocar o botão para finalizar*@
+
+    </div>
+</div>
