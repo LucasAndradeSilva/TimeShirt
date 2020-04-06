@@ -115,15 +115,86 @@ namespace TS_2.Controllers
         //=====================================
         public IActionResult ListEmpresas()
         {
-            IEnumerable<mdEmpresa> ListEmpresas = dtDataBase.GetAllEmpresas();
-            if (ListEmpresas  != null)
+            if(TempData["erro"] != null)
             {
-                return View(ListEmpresas);
+                ViewBag.Erro = TempData["erro"].ToString();
+            }            
+            IEnumerable<mdEmpresa> ListEmpresas = dtDataBase.GetAllEmpresas();           
+            return View(ListEmpresas);                          
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ListEmpresas(IFormCollection frm = null)
+        {
+            string NomeEmpresa = frm["txtFind"];
+            List<mdEmpresa> ListEmpresa = dtDataBase.GetEmpresa(NomeEmpresa);
+            if (ListEmpresa.Count != 0)
+            {
+                return View(ListEmpresa);
             }
             else
             {
-                return null;
-            }            
+                TempData["erro"] = "Empresa não encontrada!";
+                return ListEmpresas();
+            }
+        }
+
+        //=========================================
+        //=== LISTA OS FUNCIONARIOS CADASTRADOS ===
+        //=========================================
+        public IActionResult ListFuncionarios()
+        {
+            if (TempData["erro"] != null)
+            {
+                ViewBag.Erro = TempData["erro"].ToString();
+            }
+            List<mdFuncionario> ListFuncionario = dtDataBase.GetAllFuncionarios();            
+
+            return View(ListFuncionario);            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ListFuncionarios(IFormCollection frm = null)
+        {
+            string NomeFuncionario = frm["txtFuncName"].ToString();
+            List<mdFuncionario> ListFuncionario = dtDataBase.GetFuncionario(NomeFuncionario);
+            if (ListFuncionario.Count != 0)
+            {
+                return View(ListFuncionario);
+            }
+            else
+            {
+                TempData["erro"] = "Funcionário não encontrado!";
+                return ListFuncionarios();
+            }
+        }
+        //===============================
+        //=== DETALHES DA FUNCIONARIO ===
+        //===============================
+        public IActionResult DetalhesFuncionario(int IdFunc)
+        {
+            mdDadosUserLogado mdDados = dtDataBase.GetDadosUserLogado(dtDataBase.GetIdUsuario(IdFunc));
+            ViewBag.Dados = mdDados;
+            mdEndereco Endereco = mdDados.logadoEndereco;
+            string End = Endereco.Rua1 + "  Nº " + Endereco.Numero1 + " - " + Endereco.Bairro1 + " - " + Endereco.Estado1 + " - " + Endereco.Pais1 + " | CEP: " + Endereco.CEP1;
+            ViewBag.End = End;
+            return View(dtDataBase.GetAllServicos(IdFunc));
+        }
+
+        //===========================
+        //=== DELETAR FUNCIONARIO ===
+        //===========================
+        public IActionResult DeletarFuncionario(int IdFunc)
+        {
+            if (dtDataBase.DeletarFuncionario(IdFunc))
+            {
+                return RedirectToAction("ListFuncionarios", "Adiministracao");
+            }
+            else
+            {
+                return Cadastro();
+            }
         }
 
         //===========================
@@ -166,6 +237,6 @@ namespace TS_2.Controllers
             {
                 return Cadastro();
             }            
-        }
+        }       
     }
 }

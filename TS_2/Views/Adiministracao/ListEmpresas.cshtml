@@ -7,18 +7,28 @@
 
 <link href="~/css/ViewAdm/StylelListEmpresa.css" rel="stylesheet" />
 
+@if (!string.IsNullOrEmpty(ViewBag.Erro))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alerta">
+        <strong class="text-center">@ViewBag.Erro</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+}
 <div class="jumbotron" style="box-shadow: 0px 0px 10px 0px #000000; background-color: white;">
     <h1 class="text-center text-uppercase">Empresas cadastradas</h1>
     <br />
-    <form class="form-inline my-2 my-lg-0 justify-content-center" >
-        <input class="form-control mr-lg-2 w-25" type="search" placeholder="Ex. Cleber Importações" aria-label="Buscar">
+    <form class="form-inline my-2 my-lg-0 justify-content-center" asp-action="ListEmpresas" method="post">
+        <input class="form-control mr-lg-2 w-25 col-md-10" type="search" name="txtFind" placeholder="Ex. Cleber Importações" aria-label="Buscar">
         <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
     <br />
 
-    <table class="table table-bordered" >
+    <table class="table table-bordered">
         <thead>
-            <tr>
+            <tr class="jumbotron">
                 <th>
                     EMPRESA
                 </th>
@@ -39,23 +49,8 @@
                         @Html.DisplayFor(modelItem => item.CNPJ1)
                     </td>
                     <td>
-                        <a class="text-white btn btn-primary btn" href="/Adiministracao/DetalhesEmpresa?idEmp=@item.IdEmpresa1&amp;nome=@item.NomeEmpresa1">DETALHES</a>
-                        <a class="text-white btn btn-danger" href="#@item.IdEmpresa1">DELETAR</a>
-
-                        <div class="lbox" id="@item.IdEmpresa1">
-                            <div class="header">
-                                <a id="title" class="text-justify">DELETAR?</a>
-                                <a href="" class="btn btn-dark text-white" id="btnClose">X</a>
-                            </div>
-                            <div class="lconteBox">
-                                <p>
-                                    TODOS OS DADOS DESSA EMPRESA SERÃO APAGADOS.
-                                    TEM CERTEZA QUE DESEJA DELETAR?
-                                </p>
-                                <a href="/Adiministracao/DeletarEmpresa?IdEmp=@item.IdEmpresa1" class="btn btn-success btn-wd">SIM</a>
-                                <a href="" class="btn btn-danger btn-wd">NÃO</a>
-                            </div>
-                        </div>
+                        @Html.ActionLink("DETALHES", "DetalhesEmpresa", new { idEmp = item.IdEmpresa1 }, new { @class = "text-white btn btn-primary" })
+                        @Html.ActionLink("DELETAR", "DeletarEmpresa", new { IdEmp = item.IdEmpresa1 }, new { @class = "text-white btn btn-danger", @onclick = "return confirm('Deseja realmente excluir está Empresa?');" })
                     </td>
 
                 </tr>

@@ -12,8 +12,7 @@ namespace TS_2.Data
     public static class dtDataBase
     {
         private static MySqlConnection connection = new MySqlConnection("server=localhost;uid=root;pwd=1234567;database=dbts");//Casa   
-        //private static SqlConnection connection; 
-
+        
         //=======================
         //=== OPEN CONNECTION ===
         //=======================
@@ -128,6 +127,7 @@ namespace TS_2.Data
                     GetDadosLogado.mdDadosUserLogado.logadoTipo = mdUsuario;
                     
                 }
+                rd.Close();
                 CloseConnection();
                 return GetDadosLogado.mdDadosUserLogado;
             }
@@ -273,7 +273,7 @@ namespace TS_2.Data
 
                     ListServicos.Add(joinGetServico);
                 }
-
+                reader.Close();
                 connection.Close();
                 return ListServicos;
             }
@@ -447,5 +447,168 @@ namespace TS_2.Data
             }
         }
 
+        //======================
+        //=== BUSCAR EMPRESA ===
+        //======================
+        public static List<mdEmpresa> GetEmpresa(string NomeEmpresa)
+        {
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbempresa where NomeEmpresa like '%"+NomeEmpresa+"%'", connection);                
+                MySqlDataReader rd1 = cmd.ExecuteReader();
+
+                List<mdEmpresa> ListEmpresas = new List<mdEmpresa>();
+
+                while (rd1.Read())
+                {
+                    mdEmpresa empresa = new mdEmpresa();
+                    empresa.IdEmpresa1 = Convert.ToInt32(rd1[0]);
+                    empresa.NomeEmpresa1 = rd1[1].ToString();
+                    empresa.CNPJ1 = rd1[2].ToString();
+                    empresa.Id_End1 = Convert.ToInt32(rd1[3]);
+
+                    ListEmpresas.Add(empresa);
+                }                
+                cmd.Dispose();                
+                connection.Clone();
+
+                return ListEmpresas;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                connection.Dispose();
+            }
+        }
+
+        //===========================
+        //=== BUSCAR FUNCIONARIOS ===
+        //===========================
+        public static List<mdFuncionario> GetAllFuncionarios()
+        {
+            try
+            {
+                if (connection.State == System.Data.ConnectionState.Closed) connection.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbfuncionario", connection);
+   
+                List<mdFuncionario> ListFuncionarios = new List<mdFuncionario>();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    mdFuncionario funcionario = new mdFuncionario();
+
+                    funcionario.IdFunc1 = Convert.ToInt32(reader[0]);
+                    funcionario.NomeFunc1 = reader[1].ToString();
+                    funcionario.RT1 = Convert.ToInt32(reader[2]);
+                    funcionario.CPF1 = reader[3].ToString();
+                    funcionario.RG1 = reader[4].ToString();
+                    funcionario.TEL1 = reader[5].ToString();
+                    funcionario.Email1 = reader[6].ToString();
+
+                    ListFuncionarios.Add(funcionario);
+                }
+                reader.Close();
+                connection.Close();
+                return ListFuncionarios;
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                return null;
+            }
+            
+        }
+
+        //===========================
+        //=== DELETAR FUNCIONARIO ===
+        //===========================
+        public static bool DeletarFuncionario(int IdFunc)
+        {
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand("call sp_DeletarFuncionario(@IdFunc)", connection);
+                cmd.Parameters.AddWithValue("@IdFunc", IdFunc);
+                cmd.ExecuteNonQuery();
+                connection.Clone();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                connection.Clone();
+                return false;
+            }
+        }
+
+        //=============================
+        //=== BUSCA O ID DO USUARIO ===
+        //=============================
+        public static int GetIdUsuario(int IdFunc)
+        {
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand("call sp_GetIdUser(@IdFunc)", connection);
+                cmd.Parameters.AddWithValue("@IdFunc", IdFunc);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                int IdUsuario = reader.Read() ? Convert.ToInt32(reader[0]) : 0;
+                reader.Close();
+                connection.Clone();
+                return IdUsuario;
+            }
+            catch (Exception ex)
+            {                
+                connection.Clone();
+                return 0;
+            }
+        }
+
+        //=====================================
+        //=== BUSCAR FUNCIONARIO ESPECIFICO ===
+        //=====================================
+        public static List<mdFuncionario> GetFuncionario(string NomeFunc)
+        {
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from tbfuncionario where NomeFunc like '%" + NomeFunc + "%'", connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                List<mdFuncionario> ListFuncionarios = new List<mdFuncionario>();
+
+                while (reader.Read())
+                {
+                    mdFuncionario funcionario = new mdFuncionario();
+
+                    funcionario.IdFunc1 = Convert.ToInt32(reader[0]);
+                    funcionario.NomeFunc1 = reader[1].ToString();
+                    funcionario.RT1 = Convert.ToInt32(reader[2]);
+                    funcionario.CPF1 = reader[3].ToString();
+                    funcionario.RG1 = reader[4].ToString();
+                    funcionario.TEL1 = reader[5].ToString();
+                    funcionario.Email1 = reader[6].ToString();
+
+                    ListFuncionarios.Add(funcionario);
+                }
+                cmd.Dispose();
+                connection.Clone();
+
+                return ListFuncionarios;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                connection.Dispose();
+            }
+        }
     }
 }

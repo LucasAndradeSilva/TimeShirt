@@ -1,0 +1,98 @@
+﻿@model IEnumerable<mdJoinGetServico>
+@{
+    ViewData["Title"] = "Detalhes";
+    Layout = "~/Views/Shared/_LayoutAdministracao.cshtml";
+}
+
+<div class="jumbotron" style="box-shadow: 0px 0px 10px 0px #000000; background-color: white;">
+    <h1 class="text-center text-uppercase">Detalhes do Funcionario</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            NOME
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Dados.logadoFuncionario.NomeFunc1
+
+        </dd>
+        <dt class="col-sm-2">
+            CPF
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Dados.logadoFuncionario.CPF1
+        </dd>
+        <dt class="col-sm-2">
+            RG
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Dados.logadoFuncionario.RG1
+        </dd>
+        <dt class="col-sm-2">
+            TELEFONE
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Dados.logadoFuncionario.TEL1
+        </dd>
+        <dt class="col-sm-2">
+            EMAIL
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Dados.logadoFuncionario.Email1
+        </dd>
+        <dt class="col-sm-2">
+            ENDEREÇO
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.End
+        </dd>
+    </dl>
+
+    <h3 class="text-center text-uppercase my-lg-4">Serviços</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="jumbotron">
+                <th>
+                    Empresa
+                </th>
+                <th>
+                    Data Contrato
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Descrição
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (mdJoinGetServico item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeEmpresa1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataContrato1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusServico1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao1)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detalhes", "DetalhesServicos", new { id = item.IdServico1 }) |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a class="btn btn-dark" asp-action="ListFuncionarios"> < VOLTAR</a>  
+</div>
+
+

@@ -39,7 +39,7 @@ namespace TS_2.Controllers
                     string TipoLog = mdDataUser.logadoTipo.Cargo1;
                     if (TipoLog == "Adm")
                     {
-                        HttpContext.Session.Set(mdDataUser);//Loga os dados do Usuario nos Cookis
+                        HttpContext.Session.Set(mdDataUser);//Loga os dados do Usuario nos Cookis                        
                         return RedirectToAction("HomeAdm", "Adiministracao");
                     }
                     else if (TipoLog == "Func")

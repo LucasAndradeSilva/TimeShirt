@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TS_2.Models.mdFuncionario>
+@{
+    ViewData["Title"] = "ListFuncionarios";
+    Layout = "~/Views/Shared/_LayoutAdministracao.cshtml";
+}
+
+
+@if (!string.IsNullOrEmpty(ViewBag.Erro))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alerta">
+        <strong class="text-center">@ViewBag.Erro</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+}
+<div class="jumbotron" style="box-shadow: 0px 0px 10px 0px #000000; background-color: white;">
+    <h1 class="text-center text-uppercase">Funcionarios Cadastrados</h1>
+    <br />
+    <form class="form-inline my-2 my-lg-0 justify-content-center" asp-action="ListFuncionarios" method="post">
+        <input class="form-control mr-lg-2 w-25 col-md-10" type="search" name="txtFuncName" placeholder="Ex. Lucas Andrada" aria-label="Buscar">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+    <br />
+
+    <table class="table table-bordered">
+        <thead>
+            <tr class="jumbotron">
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeFunc1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RT1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CPF1)
+                </th>
+                <th>
+                    Telefone
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email1)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeFunc1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RT1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CPF1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TEL1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email1)
+                    </td>
+                    <td>
+                        @Html.ActionLink("DETALHES", "DetalhesFuncionario", new { IdFunc = item.IdFunc1 }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("DELETAR", "DeletarFuncionario", new { IdFunc = item.IdFunc1 }, new { @class = "text-white btn btn-danger", @onclick = "return confirm('Deseja realmente excluir esse Funcionario?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
